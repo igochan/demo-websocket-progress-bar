@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
-public interface WorkerProcess extends Runnable, Serializable {
+public interface ProcessRunnable extends Runnable, Serializable {
 
 	String getProcessId();
 	

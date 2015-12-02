@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>nl.pinniq.web</groupId>
-  <artifactId>asyncworker</artifactId>
+  <artifactId>demo-websocket-progress-bar</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
@@ -110,6 +110,7 @@
 		   <groupId>org.apache.tomcat.embed</groupId>
 		   <artifactId>tomcat-embed-websocket</artifactId>
 		   <version>7.0.52</version>
+		   <scope>test</scope>
 		</dependency>
 	</dependencies>
 	
@@ -130,7 +131,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 				 <configuration>
-				 	<warName>asyncworkerdemo</warName>
+				 	<warName>demo-websocket-progress-bar</warName>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
 			</plugin>

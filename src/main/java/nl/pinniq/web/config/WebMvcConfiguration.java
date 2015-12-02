@@ -42,7 +42,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 @EnableWebMvc
 @EnableAsync
 @EnableScheduling
-@ComponentScan(basePackages = {"nl.pinniq.web.config.websocket", "nl.pinniq.web.controller", "nl.pinniq.web.service"})
+@ComponentScan(basePackages = {"nl.pinniq.web.controller", "nl.pinniq.web.service", "nl.pinniq.web.config.websocket"})
 public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Override
@@ -75,7 +75,8 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-            //configurer.enable();
+		//not enabled to allow for custom  error handling (NoHandlerFoundException)
+        //configurer.enable();
     }
 	
 	@Bean 

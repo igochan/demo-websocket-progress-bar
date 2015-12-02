@@ -22,13 +22,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import nl.pinniq.web.service.ScheduledRunner;
+import nl.pinniq.web.service.ScheduledTask;
 
 @Controller
 public class WorkController {
 
 	@Autowired
-	private ScheduledRunner runner;
+	private ScheduledTask runner;
 	
 	@RequestMapping(value="/addwork", method=RequestMethod.POST)
     public @ResponseBody String addWork() {

@@ -25,7 +25,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import nl.pinniq.web.backing.ProcessState;
 import nl.pinniq.web.backing.ProcessStatus;
 
-public class AsyncWorkerProcessImpl implements WorkerProcess {
+public class AsyncProcessRunnableImpl implements ProcessRunnable {
 
 	/**
 	 * 
@@ -34,14 +34,14 @@ public class AsyncWorkerProcessImpl implements WorkerProcess {
 
 	private SimpMessagingTemplate template;
 	
-	private static final Logger LOGGER = Logger.getLogger(AsyncWorkerProcessImpl.class.getCanonicalName());
+	private static final Logger LOGGER = Logger.getLogger(AsyncProcessRunnableImpl.class.getCanonicalName());
 
 	private AtomicInteger status = new AtomicInteger(0);
 	private String processId;
 	private Date dateTime;
 	private Integer state;
 	
-	public AsyncWorkerProcessImpl() {
+	public AsyncProcessRunnableImpl() {
 		this.dateTime = new Date();
 		this.processId = UUID.randomUUID().toString();
 		this.state = ProcessState.STATE_NOT_STARTED;

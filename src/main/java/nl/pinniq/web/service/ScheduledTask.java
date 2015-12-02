@@ -29,12 +29,12 @@ import org.springframework.stereotype.Component;
 import nl.pinniq.web.backing.ProcessState;
 
 @Component
-public class ScheduledRunner {
+public class ScheduledTask {
 	
-	private Set<WorkerProcess> work = new HashSet<WorkerProcess>();
+	private Set<ProcessRunnable> work = new HashSet<ProcessRunnable>();
 	
 	@Autowired
-	@Qualifier("getAsyncExecutor")
+	@Qualifier("getAsyncExecutor") //no mistakes which bean to get
 	private ThreadPoolTaskExecutor executor;
 	
 	@Autowired
@@ -42,7 +42,7 @@ public class ScheduledRunner {
 		
 	@Scheduled(fixedRate = 1000)
     public void run() {
-		for (WorkerProcess workerProcess : work) {
+		for (ProcessRunnable workerProcess : work) {
 			//only start the ones not started
 			if (workerProcess.getState()==ProcessState.STATE_NOT_STARTED) { 
 				executor.execute(workerProcess);
@@ -54,7 +54,7 @@ public class ScheduledRunner {
 	 * Adds a new worker process to the work package
 	 */
 	public void addWork() {
-		WorkerProcess process = new AsyncWorkerProcessImpl();
+		ProcessRunnable process = new AsyncProcessRunnableImpl();
 		process.setTemplate(template);
 		work.add(process);
 	}
@@ -63,7 +63,7 @@ public class ScheduledRunner {
 	 * Retrieves the work package
 	 * @return
 	 */
-	public Set<WorkerProcess> getWork() {
+	public Set<ProcessRunnable> getWork() {
 		return this.work;
 	}
 
@@ -72,9 +72,9 @@ public class ScheduledRunner {
 	 * @param id of the worker process
 	 */
 	public void removeWork(String id) {
-		Predicate<WorkerProcess> filter = new Predicate<WorkerProcess>() {
+		Predicate<ProcessRunnable> filter = new Predicate<ProcessRunnable>() {
 			@Override
-			public boolean test(WorkerProcess t) {
+			public boolean test(ProcessRunnable t) {
 				return id.equalsIgnoreCase(t.getProcessId()); 
 			}
 		};
